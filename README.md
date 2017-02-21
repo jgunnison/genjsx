@@ -6,6 +6,7 @@ This is a simple Node CLI tool that lets you generator react components simply t
 `npm i -g genjsx`
 
 Now navigation to your components folder and run the following command.
+
 `genjsx`
 
 This will now prompt you to create a component with a SCSS file and all. 
