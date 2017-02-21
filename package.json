@@ -1,0 +1,28 @@
+{
+  "name": "genjsx",
+  "version": "0.0.1",
+  "description": "Node CLI React Component Generator",
+  "scripts": {
+    "genjsx": "./src/index.js"
+  },
+  "bin": {
+    "genjsx": "./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jgunnison/genjsx.git"
+  },
+  "author": "Jon Gunnison",
+  "license": "MIT",
+  "preferGlobal": true,
+  "dependencies": {
+    "fs-extra": "^2.0.0",
+    "prompt": "^1.0.0",
+    "shelljs": "^0.7.6",
+    "voca": "^1.3.0"
+  },
+  "bugs": {
+    "url": "https://github.com/jgunnison/genjsx/issues"
+  },
+  "homepage": "https://github.com/jgunnison/genjsx#readme"
+}
