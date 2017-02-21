@@ -63,7 +63,7 @@ export default ${name}
 
 // Component Sass/SCSS Template
 const scssTemplate = (name) => { return (`.c-${name} {
-  &__child {
+  &__element {
 
   }
 
