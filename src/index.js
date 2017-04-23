@@ -10,12 +10,13 @@ const fs = require('fs-extra'),
 
 // JSX Class Component Template
 const classTemplate = (name) => { return (`import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 
 export default class ${name} extends Component {
   state = { stateBool: true }
 
   static propTypes = {
-    text: React.PropTypes.string,
+    text: PropTypes.string,
   }
 
   static defaultProps = {
@@ -44,10 +45,11 @@ export default class ${name} extends Component {
 
 // JSX Pure Component Template
 const pureTemplate = (name) => { return (`import React from 'react'
+import PropTypes from 'prop-types'
 
 const ${name}RequiredProps = {
-  stateBool: React.PropTypes.bool,
-  text: React.PropTypes.string,
+  stateBool: PropTypes.bool,
+  text: PropTypes.string,
 }
 
 function ${name}({ text, stateBool = true }) {
