@@ -9,58 +9,56 @@ const fs = require('fs'),
 
 
 // JSX Class Component Template
-const classTemplate = (name) => { return (`import React, {Component} from 'react'
-import PropTypes from 'prop-types'
+const classTemplate = (name) => { return (`import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 export default class ${name} extends Component {
-  state = { stateBool: true }
-
   static propTypes = {
     text: PropTypes.string,
-  }
+  };
 
   static defaultProps = {
     text: 'Hello; World',
-  }
+  };
+
+  state = { stateBool: true };
 
   handleOnClick = (e) => {
-    e.preventDefault()
-  }
-  
+    e.preventDefault();
+  };
+
   render() {
     const {
       text,
-    } = this.props
+    } = this.props;
 
     const {
       stateBool,
-    } = this.state
+    } = this.state;
 
-    return ( 
-      <div onClick={ this.handleOnClick }>{ text }</div>
-    )
+    return (
+      <button onClick={this.handleOnClick}>{text}</button>
+    );
   }
 }
 `)};
 
 // JSX Pure Component Template
-const pureTemplate = (name) => { return (`import React from 'react'
-import PropTypes from 'prop-types'
-
-const ${name}RequiredProps = {
-  stateBool: PropTypes.bool,
-  text: PropTypes.string,
-}
+const pureTemplate = (name) => { return (`import React from 'react';
+import PropTypes from 'prop-types';
 
 function ${name}({ text, stateBool = true }) {
   return (
-  	<div>{ text }</div>
-  )
+    <div>{text}</div>
+  );
 }
 
-${name}.propTypes = ${name}RequiredProps
+${name}.propTypes = {
+  stateBool: PropTypes.bool,
+  text: PropTypes.string,
+};
 
-export default ${name}
+export default ${name};
 `)};
 
 // Component Sass/SCSS Template
@@ -101,14 +99,19 @@ prompt.get(schema, (err, result) => {
   console.log('  Component Name ' + result.componentName);
   console.log('  Is This a Pure Component: ' + result.componentType);
 
+  // Create text formatting variables
+  const camelCaseName = _.camelCase(result.componentName);
+  const capitalizedCaseName = _.upperFirst(camelCaseName);
+  const kebabCaseName = _.kebabCase(result.componentName);
+
   // Make the Component Directory
-  shell.mkdir(`${_.kebabCase(result.componentName)}`);
+  shell.mkdir(`${kebabCaseName}`);
 
   // Pure Component Condition
   if (result.componentType === true) {
 
     // Create Pure Component file
-		fs.writeFile(`${_.kebabCase(result.componentName)}/${_.camelCase(result.componentName)}.js`, pureTemplate(_.camelCase(result.componentName)), (err) => {
+		fs.writeFile(`${kebabCaseName}/${camelCaseName}.js`, pureTemplate(capitalizedCaseName), (err) => {
 		  if(err) {
 		      return console.log(err);
 		  }
@@ -117,7 +120,7 @@ prompt.get(schema, (err, result) => {
 	} else {
 
     // Create Class Component file
-		fs.writeFile(`${_.kebabCase(result.componentName)}/${_.camelCase(result.componentName)}.js`, classTemplate(_.camelCase(result.componentName)), (err) => {
+		fs.writeFile(`${kebabCaseName}/${camelCaseName}.js`, classTemplate(capitalizedCaseName), (err) => {
 		  if(err) {
 		      return console.log(err);
 		  }
@@ -126,7 +129,7 @@ prompt.get(schema, (err, result) => {
 	}
 
   // Create Sass/SCSS file
-	fs.writeFile(`${_.kebabCase(result.componentName)}/_${_.kebabCase(result.componentName)}.scss`, scssTemplate(_.kebabCase(result.componentName)), (err) => {
+	fs.writeFile(`${kebabCaseName}/_${kebabCaseName}.scss`, scssTemplate(kebabCaseName), (err) => {
 	  if(err) {
 	      return console.log(err);
 	  }
