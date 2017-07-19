@@ -2,10 +2,10 @@
 'use strict';
 
 // Dependency Requires
-const fs = require('fs-extra'),
+const fs = require('fs'),
 			prompt = require('prompt'),
 			shell = require('shelljs'),
-			v = require('voca');
+			_ = require('lodash');
 
 
 // JSX Class Component Template
@@ -102,13 +102,13 @@ prompt.get(schema, (err, result) => {
   console.log('  Is This a Pure Component: ' + result.componentType);
 
   // Make the Component Directory
-  shell.mkdir(`${v.kebabCase(result.componentName)}`);
+  shell.mkdir(`${_.kebabCase(result.componentName)}`);
 
   // Pure Component Condition
   if (result.componentType === true) {
 
     // Create Pure Component file
-		fs.writeFile(`${v.kebabCase(result.componentName)}/${v.camelCase(result.componentName)}.js`, pureTemplate(v.camelCase(result.componentName)), (err) => {
+		fs.writeFile(`${_.kebabCase(result.componentName)}/${_.camelCase(result.componentName)}.js`, pureTemplate(_.camelCase(result.componentName)), (err) => {
 		  if(err) {
 		      return console.log(err);
 		  }
@@ -117,7 +117,7 @@ prompt.get(schema, (err, result) => {
 	} else {
 
     // Create Class Component file
-		fs.writeFile(`${v.kebabCase(result.componentName)}/${v.camelCase(result.componentName)}.js`, classTemplate(v.camelCase(result.componentName)), (err) => {
+		fs.writeFile(`${_.kebabCase(result.componentName)}/${_.camelCase(result.componentName)}.js`, classTemplate(_.camelCase(result.componentName)), (err) => {
 		  if(err) {
 		      return console.log(err);
 		  }
@@ -126,7 +126,7 @@ prompt.get(schema, (err, result) => {
 	}
 
   // Create Sass/SCSS file
-	fs.writeFile(`${v.kebabCase(result.componentName)}/_${v.kebabCase(result.componentName)}.scss`, scssTemplate(v.kebabCase(result.componentName)), (err) => {
+	fs.writeFile(`${_.kebabCase(result.componentName)}/_${_.kebabCase(result.componentName)}.scss`, scssTemplate(_.kebabCase(result.componentName)), (err) => {
 	  if(err) {
 	      return console.log(err);
 	  }
