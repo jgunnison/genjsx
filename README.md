@@ -1,11 +1,11 @@
 ##GenJSX - React Component Generator
 
-This is a simple Node CLI tool that lets you generator react components simply through the command-line without needing to setup folders.
+This is a simple Node CLI tool that lets you generate react components simply through the command-line without needing to set up folders.
 
 ###Getting Started
 `npm i -g genjsx`
 
-Now navigation to your components folder and run the following command.
+Now navigate to your components folder and run the following command.
 
 `genjsx`
 
